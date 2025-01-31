@@ -5,42 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-6">Manage Users</h1>
-    <a href="users.php?action=create" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Create User</a>
-    <table class="w-full mt-6 bg-white rounded-lg shadow-md">
-        <thead>
-        <tr>
-            <th class="px-4 py-2">ID</th>
-            <th class="px-4 py-2">Username</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Role</th>
-            <th class="px-4 py-2">Status</th>
-            <th class="px-4 py-2">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($users as $user): ?>
-            <tr>
-                <td class="px-4 py-2"><?= htmlspecialchars($user['id']) ?></td>
-                <td class="px-4 py-2"><?= htmlspecialchars($user['username']) ?></td>
-                <td class="px-4 py-2"><?= htmlspecialchars($user['email']) ?></td>
-                <td class="px-4 py-2"><?= htmlspecialchars($user['role']) ?></td>
-                <td class="px-4 py-2"><?= htmlspecialchars($user['status']) ?></td>
-                <td class="px-4 py-2">
-                    <a href="users.php?action=edit&id=<?= $user['id'] ?>" class="px-2 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-700">Edit</a>
-                    <a href="users.php?action=delete&id=<?= $user['id'] ?>" class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-700">Delete</a>
-                    <?php if ($user['status'] === 'pending'): ?>
-                        <a href="users.php?action=approve&id=<?= $user['id'] ?>" class="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-700">Approve</a>
-                        <a href="users.php?action=reject&id=<?= $user['id'] ?>" class="px-2 py-1 bg-gray-500 text-white rounded-md hover:bg-gray-700">Reject</a>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+<body class="bg-gray-100 flex">
+<!-- Sidebar -->
+<?php include __DIR__ . '/../partials/sidebar.php'; ?>
+
+<!-- Main Content -->
+<div class="flex-1 p-8">
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-6">Manage Users</h1>
+        <div class="flex justify-between items-center mb-6">
+            <a href="users.php?action=create" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
+                <i class="fas fa-plus"></i> Create User
+            </a>
+            <a href="export.php?type=users" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700">
+                <i class="fas fa-download"></i> Export CSV
+            </a>
+        </div>
+        <!-- Search Input -->
+        <div class="mb-6">
+            <input type="text" id="searchInput" placeholder="Search users..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+            <table class="w-full" id="userTable">
+                <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="px-6 py-3 text-left">ID</th>
+                    <th class="px-6 py-3 text-left">Username</th>
+                    <th class="px-6 py-3 text-left">Email</th>
+                    <th class="px-6 py-3 text-left">Role</th>
+                    <th class="px-6 py-3 text-left">Status</th>
+                    <th class="px-6 py-3 text-left">Actions</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                <?php foreach ($users as $user): ?>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4"><?= htmlspecialchars($user['id']) ?></td>
+                        <td class="px-6 py-4"><?= htmlspecialchars($user['username']) ?></td>
+                        <td class="px-6 py-4"><?= htmlspecialchars($user['email']) ?></td>
+                        <td class="px-6 py-4"><?= htmlspecialchars($user['role']) ?></td>
+                        <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-sm rounded-full
+                                    <?= $user['status'] === 'approved' ? 'bg-green-100 text-green-800' :
+                                    ($user['status'] === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800') ?>">
+                                    <?= htmlspecialchars($user['status']) ?>
+                                </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="users.php?action=edit&id=<?= $user['id'] ?>" class="px-2 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-700">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="users.php?action=delete&id=<?= $user['id'] ?>" class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-700">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                            <?php if ($user['status'] === 'pending'): ?>
+                                <a href="users.php?action=approve&id=<?= $user['id'] ?>" class="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-700">
+                                    <i class="fas fa-check"></i> Approve
+                                </a>
+                                <a href="users.php?action=reject&id=<?= $user['id'] ?>" class="px-2 py-1 bg-gray-500 text-white rounded-md hover:bg-gray-700">
+                                    <i class="fas fa-times"></i> Reject
+                                </a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<!-- JavaScript for Search -->
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchValue = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#userTable tbody tr');
+
+        rows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            if (rowText.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
 </html>

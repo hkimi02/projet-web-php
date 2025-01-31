@@ -10,15 +10,15 @@ function sendEmail($to, $subject, $message) {
     try {
         // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com'; // Replace with your SMTP server
+        $mail->Host = 'ssl0.ovh.net'; // Replace with your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'your_email@example.com'; // Replace with your email
-        $mail->Password = 'your_password'; // Replace with your email password
+        $mail->Username = 'postmaster.padelnow@uteek.net'; // Replace with your email
+        $mail->Password = '4lc1O7yUiQj3uE'; // Replace with your email password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('no-reply@example.com', 'Company Management System');
+        $mail->setFrom('no-reply@uteek.net', 'Company Management System');
         $mail->addAddress($to);
 
         // Content

@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/InvoiceModel.php';
 require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 class InvoiceController {
     private $invoiceModel;
@@ -60,6 +61,37 @@ class InvoiceController {
     public function view($id) {
         $invoice = $this->invoiceModel->findById($id);
         require_once __DIR__ . '/../views/invoices/view.php';
+    }
+
+    public function generatePdf($id) {
+        $invoice = $this->invoiceModel->findById($id);
+
+        if (!$invoice) {
+            die("Invoice not found.");
+        }
+
+        // Create a new PDF instance
+        $pdf = new FPDF();
+        $pdf->AddPage();
+
+        // Set font
+        $pdf->SetFont('Arial', 'B', 16);
+
+        // Add a title
+        $pdf->Cell(40, 10, 'Invoice Details');
+        $pdf->Ln(20);
+
+        // Add invoice details
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(40, 10, 'Invoice Number: ' . $invoice['invoice_number']);
+        $pdf->Ln();
+        $pdf->Cell(40, 10, 'Amount: $' . $invoice['amount']);
+        $pdf->Ln();
+        $pdf->Cell(40, 10, 'Created By: ' . ($invoice['username'] ?? 'N/A'));
+        $pdf->Ln();
+
+        // Output the PDF
+        $pdf->Output('I', 'invoice_' . $invoice['id'] . '.pdf');
     }
 }
 ?>

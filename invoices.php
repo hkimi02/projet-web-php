@@ -20,7 +20,7 @@ switch ($action) {
         $invoiceController->view($id);
         break;
     case 'generate_pdf':
-
+        $invoiceController->generatePdf($id);
         break;
     default:
         $invoiceController->index();

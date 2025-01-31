@@ -8,6 +8,7 @@
 </head>
 <body class="bg-gray-100">
 <div class="container mx-auto p-4">
+    <a href="invoices.php" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-700">Back to Invoices</a>
     <h1 class="text-2xl font-bold mb-6">Create Invoice</h1>
     <form method="POST">
         <div class="mb-4">

@@ -29,11 +29,8 @@ class ComposerStaticInit2583ab5294cb8ee8fb4a110dee8f2dea
     );
 
     public static $classMap = array (
-        'App\\controllers\\AuthController' => __DIR__ . '/../..' . '/src/controllers/AuthController.php',
-        'App\\controllers\\DashboardController' => __DIR__ . '/../..' . '/src/controllers/DashboardController.php',
-        'App\\controllers\\HomeController' => __DIR__ . '/../..' . '/src/controllers/HomeController.php',
-        'App\\models\\UserModel' => __DIR__ . '/../..' . '/src/models/UserModel.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
         'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',

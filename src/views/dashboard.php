@@ -6,19 +6,12 @@
     <title>Dashboard - Company Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-<!-- Navigation Bar -->
-<nav class="bg-blue-600 p-4 text-white">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="dashboard.php" class="text-2xl font-bold">Dashboard</a>
-        <div>
-            <a href="logout.php" class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-700">Logout</a>
-        </div>
-    </div>
-</nav>
+<body class="bg-gray-100 flex">
+<!-- Include Sidebar -->
+<?php include __DIR__ . '/partials/sidebar.php'; ?>
 
-<!-- Dashboard Content -->
-<div class="container mx-auto mt-10">
+<!-- Main Content -->
+<div class="flex-1 p-8">
     <h1 class="text-3xl font-bold text-gray-800">Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
     <p class="mt-2 text-gray-600">Role: <?= htmlspecialchars($_SESSION['user']['role']) ?></p>
 
@@ -60,10 +53,5 @@
         </div>
     <?php endif; ?>
 </div>
-
-<!-- Footer -->
-<footer class="bg-gray-800 text-white text-center p-4 mt-10">
-    <p>&copy; 2023 Company Management System. All rights reserved.</p>
-</footer>
 </body>
 </html>
