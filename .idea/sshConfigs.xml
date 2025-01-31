@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="amine.dev.uteek.net" id="9c4516a6-803e-46a8-a655-4d14b55c6f29" keyPath="$USER_HOME$/pipeline_gitlab" port="22" nameFormat="DESCRIPTIVE" username="amine" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

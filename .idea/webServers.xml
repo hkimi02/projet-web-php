@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4969d6d6-cb25-41e4-8ae3-fbe7ae3ee4cb" name="test-amine" url="https://test-amine.gattoufi.site">
+        <fileTransfer accessType="SFTP" host="amine.dev.uteek.net" port="22" sshConfigId="9c4516a6-803e-46a8-a655-4d14b55c6f29" sshConfig="amine@amine.dev.uteek.net:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
