@@ -2,8 +2,8 @@
 
 $host = '127.0.0.1'; // Database host
 $dbname = 'company_db'; // Database name
-$username = 'amine'; // Database username
-$password = '*2(7mkRwfTC42vuR'; // Database password
+$username = 'root'; // Database username
+$password = ''; // Database password
 
 try {
     // Create a PDO instance

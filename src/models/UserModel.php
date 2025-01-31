@@ -1,7 +1,6 @@
 <?php
 
-namespace App\models;
-require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../../includes/db.php';
 
 class UserModel {
     private $pdo;

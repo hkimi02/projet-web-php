@@ -14,7 +14,7 @@ CREATE TABLE users (
 -- Insert superadmin (username: admin, password: admin123)
 -- Password is hashed using password_hash() in PHP
 INSERT INTO users (username, password, email, role, status)
-VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'superadmin', 'approved');
+VALUES ('admin', '$2y$10$OxCYrkm9Cti99d/Urvqfs.iYozirczJinOwr2k086pFQrtos2tm7e', 'admin@example.com', 'superadmin', 'approved');
 
 -- Invoices table
 CREATE TABLE invoices (

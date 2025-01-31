@@ -1,8 +1,8 @@
 <?php
-//$homeController = new \App\controllers\HomeController();
-//$homeController->index();
+require __DIR__ . "/src/controllers/HomeController.php";
+$homeController = new HomeController();
+$homeController->index();
 
-echo "Hello, World!";
 
 ?>
 

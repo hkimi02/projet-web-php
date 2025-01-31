@@ -1,5 +1,5 @@
 <?php
-
-$dashboardController = new \App\controllers\DashboardController();
+require __DIR__ . "/src/controllers/DashboardController.php";
+$dashboardController = new DashboardController();
 $dashboardController->index();
 ?>

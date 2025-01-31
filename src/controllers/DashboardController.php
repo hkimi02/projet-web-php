@@ -1,7 +1,6 @@
 <?php
 
-namespace App\controllers;
-
+require_once __DIR__ . '/../../includes/auth.php';
 class DashboardController
 {
     public function index() {

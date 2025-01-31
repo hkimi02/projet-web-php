@@ -5,7 +5,7 @@ namespace App\controllers;
 use App\models\UserModel;
 
 require_once __DIR__ . '/../models/UserModel.php';
-require_once __DIR__ . '../includes/auth.php';
+require_once __DIR__ . '/../../includes/auth.php';
 
 class AuthController {
     private $userModel;
@@ -20,7 +20,6 @@ class AuthController {
             $password = $_POST['password'];
 
             $user = $this->userModel->findByEmail($email);
-
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = $user;
                 header('Location: dashboard.php');

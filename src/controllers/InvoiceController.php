@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/InvoiceModel.php';
-require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../../includes/auth.php';
 
 class InvoiceController {
     private $invoiceModel;
