@@ -18,6 +18,11 @@ class AuthController {
 
             $user = $this->userModel->findByEmail($email);
             if ($user && password_verify($password, $user['password'])) {
+                if($user['status'] == 'pending') {
+                    $error = "Your account is pending approval.";
+                    require_once __DIR__ . '/../views/auth/login.php';
+                    exit;
+                }
                 $_SESSION['user'] = $user;
                 header('Location: dashboard.php');
                 exit;
